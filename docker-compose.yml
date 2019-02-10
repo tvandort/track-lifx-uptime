@@ -1,0 +1,14 @@
+version: "3.1"
+
+services:
+  db:
+    image: postgres
+    restart: always
+
+  server:
+    # environment:
+    #   NODE_ENV: development
+    build: ./server
+    # entrypoint: ls -la
+    depends_on:
+      - db
