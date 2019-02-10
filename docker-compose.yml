@@ -7,8 +7,6 @@ services:
 
   server:
     build: ./server
-    ports:
-      - "9229:9229"
     depends_on:
       - db
-    command: yarn start:debug
+    command: yarn start

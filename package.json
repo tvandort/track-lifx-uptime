@@ -6,6 +6,8 @@
   },
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "clean": "lerna clean"
+    "clean": "lerna clean",
+    "start": "./scripts/start.sh",
+    "start:debug": "./scripts/debug.sh"
   }
 }

@@ -1,0 +1,7 @@
+version: "3.1"
+
+services:
+  server:
+    ports:
+      - "9229:9229"
+    command: yarn start:debug
