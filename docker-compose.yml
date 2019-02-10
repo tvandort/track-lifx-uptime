@@ -6,9 +6,9 @@ services:
     restart: always
 
   server:
-    # environment:
-    #   NODE_ENV: development
     build: ./server
-    # entrypoint: ls -la
+    ports:
+      - "9229:9229"
     depends_on:
       - db
+    command: yarn start:debug
