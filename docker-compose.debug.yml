@@ -4,4 +4,4 @@ services:
   server:
     ports:
       - "9229:9229"
-    command: yarn start --inspect-brk=0.0.0.0
+    command: sh -c "yarn && yarn start --inspect-brk=0.0.0.0"

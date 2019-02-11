@@ -1,0 +1,13 @@
+version: "3.1"
+
+services:
+  db:
+    image: postgres
+    restart: always
+
+  server:
+    image: node:alpine
+    volumes:
+      - ./server:/usr/app
+    working_dir: /usr/app
+    command: sh -c "yarn && yarn start:watch"
