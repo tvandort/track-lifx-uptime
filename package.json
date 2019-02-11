@@ -8,6 +8,7 @@
     "bootstrap": "lerna bootstrap",
     "clean": "lerna clean",
     "start": "./scripts/start.sh",
-    "start:debug": "./scripts/debug.sh"
+    "start:debug": "./scripts/debug.sh",
+    "start:watch": "./scripts/watch.sh"
   }
 }
