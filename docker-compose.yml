@@ -4,8 +4,12 @@ services:
   db:
     image: postgres
     restart: always
+    ports:
+      - "5432:5432"
 
   server:
+    environment:
+      - DATABASE_URL=postgres://postgres@0.0.0.0/postgres
     build: ./server
     depends_on:
       - db

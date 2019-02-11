@@ -1,12 +1,10 @@
 version: "3.1"
 
 services:
-  db:
-    image: postgres
-    restart: always
-
   server:
     image: node:alpine
+    environment:
+      - DATABASE_URL=postgres://postgres@0.0.0.0/postgres
     volumes:
       - ./server:/usr/app
     working_dir: /usr/app
