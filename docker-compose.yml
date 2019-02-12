@@ -4,16 +4,13 @@ services:
   db:
     image: postgres
     restart: always
-    ports:
-      - 5432:5432
 
   server:
     environment:
-      - DATABASE_URL=postgres://postgres:postgres@db:5432/postgres
-    build: ./server
-    ports:
-      - 56700:56700
+      - DATABASE_URL=postgres://postgres:postgres@db/postgres
+    build:
+      context: ./server
     depends_on:
       - db
     command: yarn start
-    network_mode: host
+    # network_mode: host

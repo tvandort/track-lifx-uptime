@@ -1,11 +1,11 @@
-import { Client } from "node-lifx";
+// import { Client } from "node-lifx";
 
-const client = new Client();
+// const client = new Client();
 
-client.on("light-new", light => {
-  console.log(light);
-});
+// client.on("light-new", light => {
+//   console.log(light);
+// });
 
-client.init({
-  broadcast: "192.168.1.255"
-});
+// client.init({
+//   broadcast: "192.168.1.255"
+// });

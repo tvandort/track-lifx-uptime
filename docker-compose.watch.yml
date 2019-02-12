@@ -2,16 +2,13 @@ version: "3.4"
 
 services:
   server:
-    image: node:alpine
     environment:
       - DATABASE_URL=postgres://postgres:postgres@db:5432/postgres
+    image: node:alpine
     volumes:
       - ./server:/usr/app
     working_dir: /usr/app
     command: sh -c "yarn && yarn start:watch"
     build:
       context: ./server
-      network: host
-    ports:
-      - 56700:56700
     network_mode: host
