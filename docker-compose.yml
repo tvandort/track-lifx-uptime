@@ -4,9 +4,14 @@ services:
   db:
     image: postgres
     restart: always
+    ports:
+      - 5432:5432
 
   server:
-    build: ./server
+    image: node:alpine
+    volumes:
+      - ./server:/usr/app
+    working_dir: /usr/app
     depends_on:
       - db
-    command: yarn start
+    command: sh -c "yarn && yarn start"

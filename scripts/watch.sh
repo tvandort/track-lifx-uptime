@@ -2,4 +2,4 @@
 
 yarn clean --yes
 docker-compose build
-docker-compose -f docker-compose.watch.yml up
+docker-compose -f docker-compose.yml -f docker-compose.watch.yml up
