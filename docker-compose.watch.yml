@@ -7,3 +7,6 @@ services:
 
   server:
     command: sh -c "yarn && yarn start:watch"
+
+  discovery-service:
+    command: sh -c "yarn && yarn start:watch"
