@@ -1,0 +1,10 @@
+{
+  "name": "database",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "node-pg-migrate": "^3.16.0",
+    "pg": "^7.8.0"
+  }
+}

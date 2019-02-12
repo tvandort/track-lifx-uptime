@@ -4,12 +4,20 @@ services:
   db:
     image: postgres
     restart: always
+    environment:
+      - POSTGRES_USER=admin
+      - "POSTGRES_PASSWORD=${POSTGRES_PASSWORD}"
+
+  migrations:
+    image: node:alpine
+    volumes:
+      - ./services/database:/usr/app
+    depends_on:
+      - db
 
   server:
     image: node:alpine
     volumes:
       - ./services/server:/usr/app
     working_dir: /usr/app
-    depends_on:
-      - db
     command: sh -c "yarn && yarn start"
