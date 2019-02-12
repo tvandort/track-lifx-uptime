@@ -1,5 +1,5 @@
 {
-  "name": "api",
+  "name": "discovery-service",
   "private": true,
   "dependencies": {},
   "scripts": {
