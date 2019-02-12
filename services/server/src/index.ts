@@ -1,5 +1,5 @@
 console.log("Booting.");
 
 setInterval(() => {
-  console.log("Listening");
+  console.log("Listening server");
 }, 1000);

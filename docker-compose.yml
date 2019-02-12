@@ -21,3 +21,15 @@ services:
       - ./services/server:/usr/app
     working_dir: /usr/app
     command: sh -c "yarn && yarn start"
+    depends_on:
+      - migrations
+
+  discovery-service:
+    image: node:alpine
+    volumes:
+      - ./services/discovery-service:/usr/app
+    working_dir: /usr/app
+    network_mode: host
+    command: sh -c "yarn && yarn start"
+    depends_on:
+      - migrations
