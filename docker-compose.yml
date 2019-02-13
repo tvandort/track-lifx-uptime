@@ -29,7 +29,8 @@ services:
     volumes:
       - ./services/discovery-service:/usr/app
     working_dir: /usr/app
-    network_mode: host
+    ports:
+      - "56700:56700/udp"
     command: sh -c "yarn && yarn start"
     depends_on:
       - migrations
