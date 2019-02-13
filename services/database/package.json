@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "node-pg-migrate": "^3.16.0",
+    "db-migrate": "^0.11.5",
     "pg": "^7.8.0"
   }
 }
