@@ -5,12 +5,13 @@ services:
     ports:
       - 5432:5432
 
-  server:
+  migrations:
     ports:
       - "9230:9230"
-    command: sh -c "yarn && yarn start --inspect-brk=0.0.0.0:9230"
+    command:
+      - sh -c "yarn && yarn start --inspect-brk=0.0.0.0:9230"
 
-  discovery-service:
+  server:
     ports:
       - "9229:9229"
-    command: sh -c "yarn && yarn start --inspect-brk=0.0.0.0:9229"
+    command: sh -c "yarn && yarn start --inspect=0.0.0.0:9229"

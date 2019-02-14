@@ -5,8 +5,8 @@ services:
     ports:
       - 5432:5432
 
-  server:
-    command: sh -c "yarn && yarn start:watch"
+  migrations:
+    command: sh -c "yarn  && yarn start:watch"
 
-  discovery-service:
+  server:
     command: sh -c "yarn && yarn start:watch"

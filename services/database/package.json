@@ -4,17 +4,22 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "@types/knex": "^0.15.2",
-    "@types/node": "^11.9.3",
-    "@types/wait-on": "^3.2.0",
     "knex": "0.16.3",
     "pg": "7.8.0",
     "wait-on": "^3.2.0"
+  },
+  "devDependencies": {
+    "@types/knex": "^0.15.2",
+    "@types/node": "^11.9.3",
+    "@types/wait-on": "^3.2.0",
+    "nodemon": "^1.18.10"
   },
   "scripts": {
     "migrate-up": "knex migrate:latest",
     "migrate-down": "knex migrate:rollback",
     "create-migration": "knex migrate:make",
-    "start": "node index.js"
+    "start": "./scripts/start.sh",
+    "start:watch": "nodemon -L",
+    "start:debug": "yarn start --inspect-brk"
   }
 }

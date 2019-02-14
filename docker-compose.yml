@@ -28,17 +28,8 @@ services:
     volumes:
       - ./services/server:/usr/app
     working_dir: /usr/app
-    command: sh -c "yarn && yarn start"
-    depends_on:
-      - migrations
-
-  discovery-service:
-    image: node:alpine
-    volumes:
-      - ./services/discovery-service:/usr/app
-    working_dir: /usr/app
     ports:
       - "56700:56700/udp"
     command: sh -c "yarn && yarn start"
     depends_on:
-      - migrations
+      - db
