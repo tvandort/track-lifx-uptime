@@ -12,6 +12,9 @@ services:
     image: node:alpine
     volumes:
       - ./services/database:/usr/app
+    environment:
+      - POSTGRES_USER=admin
+      - "POSTGRES_PASSWORD=${POSTGRES_PASSWORD}"
     depends_on:
       - db
 
