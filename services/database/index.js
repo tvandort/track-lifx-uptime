@@ -1,9 +1,9 @@
 // @ts-check
-
 const waitOn = require("wait-on");
-
-const config = require("./knexfile");
 const knex = require("knex");
+
+/** @type {knex.Config} */
+const config = require("./knexfile");
 
 const databasePort = `tcp:${process.env.DB_ADDRESS}:${process.env.DB_PORT}`;
 
