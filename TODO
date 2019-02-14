@@ -1,0 +1,8 @@
+☐ Merge watcher and debug stories?
+☐ Change database migration to typescript.
+☐ Rename database to migrations.
+☐ Add admin user for migrations.
+☐ Add app user for server.
+☐ Add endpoint for migrations to check version.
+☐ Add endpoint for migrations to check health.
+☐ Add endpoint for migrations to check state.
