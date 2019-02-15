@@ -1,9 +1,6 @@
-// @ts-check
-const waitOn = require("wait-on");
-const knex = require("knex");
-
-/** @type {knex.Config} */
-const config = require("./knexfile");
+import waitOn from "wait-on";
+import knex from "knex";
+import config from "./knexfile";
 
 const databasePort = `tcp:${process.env.DB_ADDRESS}:${process.env.DB_PORT}`;
 
@@ -20,7 +17,7 @@ const databasePort = `tcp:${process.env.DB_ADDRESS}:${process.env.DB_PORT}`;
 
   try {
     const client = knex(config);
-    await client.migrate.latest();
+    client.migrate.latest();
     process.exit(0);
   } catch (error) {
     console.log("Error in migration: ", error);

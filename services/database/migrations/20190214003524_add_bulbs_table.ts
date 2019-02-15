@@ -1,8 +1,6 @@
-// @ts-check
-var knex = require("knex");
+import * as knex from "knex";
 
-/** @type {function(knex, Promise): void} */
-exports.up = async function(knex, Promise) {
+exports.up = async function(knex: knex) {
   const supposedMaxIdLength = 12;
   const maxIpv4Length = 15;
   const maxPortLength = 5;
@@ -20,7 +18,6 @@ exports.up = async function(knex, Promise) {
   });
 };
 
-/** @type {function(knex, Promise): void} */
-exports.down = async function(knex, Promise) {
+exports.down = async function(knex: knex) {
   await knex.schema.dropTable("bulbs");
 };

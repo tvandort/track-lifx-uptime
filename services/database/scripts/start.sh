@@ -1,3 +1,4 @@
 #!/usr/bin/env sh
 
-node $1 index.js
+tsc
+node $1 build/index.js

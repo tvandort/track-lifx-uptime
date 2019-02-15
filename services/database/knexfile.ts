@@ -1,8 +1,6 @@
-// @ts-check
-var knex = require("knex");
+import * as knex from "knex";
 
-/** @type {knex.Config} */
-const config = {
+const config: knex.Config = {
   client: "pg",
   connection: {
     database: process.env.DATABASE,
@@ -10,7 +8,7 @@ const config = {
     password: process.env.POSTGRES_PASSWORD,
     host: process.env.DB_ADDRESS,
     port: process.env.DB_PORT
-  }
+  } as knex.ConnectionConfig
 };
 
-module.exports = config;
+export default config;
