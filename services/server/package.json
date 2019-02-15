@@ -10,6 +10,6 @@
   },
   "scripts": {
     "start": "./scripts/start.sh",
-    "start:watch": "nodemon -L"
+    "start:dev": "nodemon -L"
   }
 }
