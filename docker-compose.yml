@@ -19,6 +19,7 @@ services:
       - "POSTGRES_PASSWORD=${POSTGRES_PASSWORD}"
       - DB_ADDRESS=db
       - DB_PORT=5432
+      - DB_API_PORT=5442
     command: sh -c "yarn && yarn start"
     depends_on:
       - db

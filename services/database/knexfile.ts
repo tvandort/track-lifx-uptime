@@ -8,7 +8,10 @@ const config: knex.Config = {
     password: process.env.POSTGRES_PASSWORD,
     host: process.env.DB_ADDRESS,
     port: process.env.DB_PORT
-  } as knex.ConnectionConfig
+  } as knex.ConnectionConfig,
+  migrations: {
+    directory: "build/migrations"
+  }
 };
 
 export default config;

@@ -1,4 +1,4 @@
-import * as knex from "knex";
+import knex from "knex";
 
 exports.up = async function(knex: knex) {
   const supposedMaxIdLength = 12;
