@@ -9,9 +9,9 @@ services:
     ports:
       - 9230:9230
       - 5442:5442
-    command: sh -c "yarn && yarn start --inspect=0.0.0.0:9230"
+    command: sh -c "yarn && yarn start:watch  --inspect=0.0.0.0:9230"
 
   server:
     ports:
       - 9229:9229
-    command: sh -c "yarn && yarn start --inspect=0.0.0.0:9229"
+    command: sh -c "yarn && yarn start:watch --inspect=0.0.0.0:9229"

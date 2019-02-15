@@ -2,19 +2,24 @@ import waitOn from "wait-on";
 import knex from "knex";
 import config from "./knexfile";
 import express from "express";
-import SQL from "sql-template-strings";
 
 const app = express();
-const port = process.env.DB_API_PORT;
+const port = process.env.API_PORT;
 const databasePort = `tcp:${process.env.DB_ADDRESS}:${process.env.DB_PORT}`;
 
 let client: knex;
 
-app.get("/version", (_, response) => {
+app.get("/version", async (_, response) => {
   if (client) {
-    response.send();
+    const { name } = await client
+      .select("name")
+      .from("knex_migrations")
+      .orderBy("migration_time", "desc")
+      .first();
+    const [version] = name.split("_");
+    response.send(version);
   } else {
-    response.status(503);
+    response.status(503).send("Service is starting.");
   }
 });
 

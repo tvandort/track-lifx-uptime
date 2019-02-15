@@ -12,14 +12,14 @@ services:
     image: node:alpine
     restart: on-failure
     volumes:
-      - ./services/database:/usr/app
+      - ./services/migrations:/usr/app
     working_dir: /usr/app
     environment:
       - POSTGRES_USER=admin
       - "POSTGRES_PASSWORD=${POSTGRES_PASSWORD}"
       - DB_ADDRESS=db
       - DB_PORT=5432
-      - DB_API_PORT=5442
+      - API_PORT=5442
     command: sh -c "yarn && yarn start"
     depends_on:
       - db
