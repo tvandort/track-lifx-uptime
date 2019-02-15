@@ -11,7 +11,7 @@ let client: knex;
 
 app.use(function(request: Request, response, next) {
   if (null) {
-    request.context;
+    request.client = client;
   } else {
     response.status(503).send("Service is starting.");
   }
