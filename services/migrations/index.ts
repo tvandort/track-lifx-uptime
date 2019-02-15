@@ -1,13 +1,21 @@
 import waitOn from "wait-on";
 import knex from "knex";
 import config from "./knexfile";
-import express from "express";
+import express, { Express, Request } from "express";
 
-const app = express();
+const app: Express = express();
 const port = process.env.API_PORT;
 const databasePort = `tcp:${process.env.DB_ADDRESS}:${process.env.DB_PORT}`;
 
 let client: knex;
+
+app.use(function(request: Request, response, next) {
+  if (null) {
+    request.context;
+  } else {
+    response.status(503).send("Service is starting.");
+  }
+});
 
 app.get("/version", async (_, response) => {
   if (client) {
@@ -19,7 +27,6 @@ app.get("/version", async (_, response) => {
     const [version] = name.split("_");
     response.send(version);
   } else {
-    response.status(503).send("Service is starting.");
   }
 });
 
