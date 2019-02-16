@@ -12,7 +12,9 @@ services:
     image: node:alpine
     restart: on-failure
     volumes:
-      - ./services/migrations:/usr/app
+      - ./services/migrations:/usr/app/
+      - /usr/app/node_modules/ # allow image to have it's own node_modules
+
     working_dir: /usr/app
     environment:
       - POSTGRES_USER=admin
@@ -27,7 +29,9 @@ services:
   server:
     image: node:alpine
     volumes:
-      - ./services/server:/usr/app
+      - ./services/server:/usr/app/
+      - /usr/app/node_modules/ # allow image to have it's own node_modules
+
     working_dir: /usr/app
     ports:
       - "56700:56700/udp"
