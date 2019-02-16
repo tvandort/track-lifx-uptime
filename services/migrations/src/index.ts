@@ -15,19 +15,18 @@ app.use(function(request: Request, response, next) {
   } else {
     response.status(503).send("Service is starting.");
   }
+  next();
 });
 
-app.get("/version", async (_, response) => {
-  if (client) {
-    const { name } = await client
-      .select("name")
-      .from("knex_migrations")
-      .orderBy("migration_time", "desc")
-      .first();
-    const [version] = name.split("_");
-    response.send(version);
-  } else {
-  }
+app.get("/version", async (request, response) => {
+  const client = request.client;
+  const { name } = await client
+    .select("name")
+    .from("knex_migrations")
+    .orderBy("migration_time", "desc")
+    .first();
+  const [version] = name.split("_");
+  response.send(version);
 });
 
 app.listen(port, () => console.log(`Experiment listening on port ${port}`));
