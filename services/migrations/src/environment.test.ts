@@ -5,7 +5,8 @@ const envVars = [
   ["ADMIN_PASSWORD", "A_PASSWORD"],
   ["DATABASE", "A_DATABASE"],
   ["DATABASE_ADDRESS", "A_SERVER_ADDRESS"],
-  ["DATABASE_PORT", "A_DATABASE_PORT"]
+  ["DATABASE_PORT", "A_DATABASE_PORT"],
+  ["API_PORT", "AN_API_PORT"]
 ];
 
 describe("environment", () => {
@@ -32,6 +33,10 @@ describe("environment", () => {
 
     it("has DATABASE_PORT", () => {
       expect(Environment.DATABASE_PORT).toBe("A_DATABASE_PORT");
+    });
+
+    it("has API_PORT", () => {
+      expect(Environment.API_PORT).toBe("AN_API_PORT");
     });
 
     it("not to throw when environment is OK", () => {

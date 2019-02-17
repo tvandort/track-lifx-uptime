@@ -23,6 +23,11 @@ const envVars = [
     key: "DATABASE_PORT",
     value: "A_DATABASE_PORT",
     warn: "Postgres connection requires port."
+  },
+  {
+    key: "API_PORT",
+    value: "AN_API_PORT",
+    warn: "API requires a port."
   }
 ];
 
@@ -46,6 +51,10 @@ export default class Environment {
   static get DATABASE_PORT(): string {
     return process.env["DATABASE_PORT"]!;
   }
+
+  static get API_PORT(): string {
+    return process.env["API_PORT"]!;
+  }
 }
 
 export const ensureRequiredEnvironment = () => {
@@ -56,7 +65,9 @@ export const ensureRequiredEnvironment = () => {
       if (variable) {
         return warnings;
       }
-      return warnings.concat(environmentVariable.warn);
+      return warnings.concat(
+        `Missing "${environmentVariable.key}". ${environmentVariable.warn}`
+      );
     },
     initialWarnings
   );

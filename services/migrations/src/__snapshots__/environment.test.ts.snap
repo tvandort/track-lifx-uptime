@@ -4,10 +4,11 @@ exports[`environment incomplete fails on missing variable 1`] = `
 "
 Incomplete environment setup:
 
-	 • Postgres connection requires admin account.
-	 • Postgres connection requires admin password.
-	 • Postgres connection requires database.
-	 • Postgres connection requires address.
-	 • Postgres connection requires port.
+	 • Missing \\"ADMIN_USER\\". Postgres connection requires admin account.
+	 • Missing \\"ADMIN_PASSWORD\\". Postgres connection requires admin password.
+	 • Missing \\"DATABASE\\". Postgres connection requires database.
+	 • Missing \\"DATABASE_ADDRESS\\". Postgres connection requires address.
+	 • Missing \\"DATABASE_PORT\\". Postgres connection requires port.
+	 • Missing \\"API_PORT\\". API requires a port.
     "
 `;
