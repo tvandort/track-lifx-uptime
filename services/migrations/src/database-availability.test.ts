@@ -15,6 +15,7 @@ describe("database availability", () => {
       .mockImplementationOnce(() => Promise.resolve());
 
     await databaseResponse();
+    console.log("where am i");
 
     expect(waitOn.default).toHaveBeenCalledTimes(1);
     expect(waitOn.default).toHaveBeenCalledWith({
@@ -27,7 +28,7 @@ describe("database availability", () => {
   it("exists process with error message on failure", async () => {
     jest
       .spyOn(waitOn, "default")
-      .mockImplementation(() => Promise.reject("Test error message."));
+      .mockImplementationOnce(() => Promise.reject("Test error message."));
     jest.spyOn(console, "log").mockImplementationOnce(() => {});
 
     // @ts-ignore // Can't create an empty stub that returns never.
