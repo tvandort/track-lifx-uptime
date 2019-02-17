@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`environment incomplete fails on missing variable 1`] = `
+"
+Incomplete environment setup:
+
+	 • Postgres connection requires admin account.
+	 • Postgres connection requires admin password.
+	 • Postgres connection requires database.
+	 • Postgres connection requires address.
+	 • Postgres connection requires port.
+    "
+`;
