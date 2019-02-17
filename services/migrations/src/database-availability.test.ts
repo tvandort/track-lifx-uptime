@@ -2,7 +2,8 @@ import environment from "./environment";
 import * as waitOn from "wait-on";
 import databaseResponse from "./database-availability";
 
-jest.mock("wait-on");
+const mockWaitOn = jest.fn(async () => {});
+jest.mock("wait-on", mockWaitOn);
 jest.mock("./environment", () => ({
   DATABASE_ADDRESS: "TEST_ADDRESS",
   DATABASE_PORT: "5555"
@@ -10,34 +11,27 @@ jest.mock("./environment", () => ({
 
 describe("database availability", () => {
   it("calls waitOn with params", async () => {
-    jest.spyOn(waitOn, "default").mockImplementationOnce(async () => {});
-
-    await databaseResponse();
-
+    mockWaitOn.mockImplementationOnce(async () => {});
+    const result = await databaseResponse(() => {});
     expect(waitOn.default).toHaveBeenCalledTimes(1);
     expect(waitOn.default).toHaveBeenCalledWith({
       resources: [
         `tcp:${environment.DATABASE_ADDRESS}:${environment.DATABASE_PORT}`
       ]
     });
+
+    return result;
   });
 
-  it("exists process with error message on failure", async () => {
-    jest.spyOn(waitOn, "default").mockImplementationOnce(async () => {
-      throw new Error("Test error message.");
+  it("error message on failure calls callback", async () => {
+    mockWaitOn.mockImplementationOnce(async () => {
+      throw new Error("WHAT");
     });
-    jest.spyOn(console, "log").mockImplementationOnce(() => {});
 
-    // @ts-ignore // Can't create an empty stub that returns never.
-    jest.spyOn(process, "exit").mockImplementationOnce(() => {});
+    const errorCallback = jest.fn();
+    const result = await databaseResponse(errorCallback);
 
-    await databaseResponse();
-
-    expect(console.log).toBeCalledWith(
-      "Error waiting for database to start up: ",
-      expect.any(Error)
-    );
-    expect(process.exit).toHaveBeenCalledWith(1);
+    return result;
   });
 
   afterEach(() => {
