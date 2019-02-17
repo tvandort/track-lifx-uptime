@@ -10,12 +10,9 @@ jest.mock("./environment", () => ({
 
 describe("database availability", () => {
   it("calls waitOn with params", async () => {
-    jest
-      .spyOn(waitOn, "default")
-      .mockImplementationOnce(() => Promise.resolve());
+    jest.spyOn(waitOn, "default").mockImplementationOnce(async () => {});
 
     await databaseResponse();
-    console.log("where am i");
 
     expect(waitOn.default).toHaveBeenCalledTimes(1);
     expect(waitOn.default).toHaveBeenCalledWith({
@@ -26,9 +23,9 @@ describe("database availability", () => {
   });
 
   it("exists process with error message on failure", async () => {
-    jest
-      .spyOn(waitOn, "default")
-      .mockImplementationOnce(() => Promise.reject("Test error message."));
+    jest.spyOn(waitOn, "default").mockImplementationOnce(async () => {
+      throw new Error("Test error message.");
+    });
     jest.spyOn(console, "log").mockImplementationOnce(() => {});
 
     // @ts-ignore // Can't create an empty stub that returns never.
@@ -38,8 +35,12 @@ describe("database availability", () => {
 
     expect(console.log).toBeCalledWith(
       "Error waiting for database to start up: ",
-      "Test error message."
+      expect.any(Error)
     );
     expect(process.exit).toHaveBeenCalledWith(1);
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
   });
 });
