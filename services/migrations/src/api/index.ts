@@ -11,10 +11,8 @@ class Api {
   connected: boolean;
 
   constructor({ dbClient: client }: Dependencies) {
-    this.connected = false;
-    this.app = express();
-
-    this.app.use((request: Request, response, next) => {
+    const app = express();
+    app.use((request: Request, response, next) => {
       if (this.connected) {
         request.client = client;
         next();
@@ -24,13 +22,16 @@ class Api {
       }
     });
 
-    this.app.get("/version", (_, response) => {
+    app.get("/version", (_, response) => {
       response.send("Example");
     });
 
-    this.app.listen(environment.API_PORT, () =>
+    app.listen(environment.API_PORT, () =>
       console.log(`Experiment listening on port ${environment.API_PORT}`)
     );
+
+    this.connected = false;
+    this.app = app;
   }
 }
 
