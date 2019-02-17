@@ -6,13 +6,19 @@ import { Dependencies, setupApi } from "./api";
 
 ensureRequiredEnvironment();
 
+const dbClient = knex(knexfile);
 const dependencies: Dependencies = {
-  dbClient: knex(knexfile)
+  dbClient
 };
 
 const api = setupApi(dependencies);
 
 (async () => {
   await databaseResponse();
+  try {
+    await dbClient.migrate.latest();
+  } catch (error) {
+    console.log("Error in migration: ", error);
+  }
   api.connected = true;
 })();

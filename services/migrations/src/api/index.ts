@@ -22,8 +22,15 @@ class Api {
       }
     });
 
-    app.get("/version", (_, response) => {
-      response.send("Example");
+    app.get("/version", async ({ client }, response) => {
+      const { name } = await client
+        .select("name")
+        .from("knex_migrations")
+        .orderBy("migration_time", "desc")
+        .first();
+      const [version] = name.split("_");
+
+      response.send(version);
     });
 
     app.listen(environment.API_PORT, () =>
