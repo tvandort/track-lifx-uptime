@@ -14,6 +14,7 @@ services:
     volumes:
       - ./services/migrations:/usr/app/
       - /usr/app/node_modules/ # allow image to have it's own node_modules
+      - /usr/app/build/ # allow image to have it's own build
 
     working_dir: /usr/app
     environment:
@@ -33,6 +34,7 @@ services:
     volumes:
       - ./services/server:/usr/app/
       - /usr/app/node_modules/ # allow image to have it's own node_modules
+      - /usr/app/build/ # allow image to have it's own build
 
     working_dir: /usr/app
     ports:
