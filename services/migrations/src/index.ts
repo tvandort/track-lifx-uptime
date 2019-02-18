@@ -14,7 +14,10 @@ const dependencies: Dependencies = {
 const api = setupApi(dependencies);
 
 (async () => {
-  await databaseResponse();
+  await databaseResponse(() => {
+    console.log("Error waiting for database.");
+    process.exit(1);
+  });
   try {
     await dbClient.migrate.latest();
   } catch (error) {
