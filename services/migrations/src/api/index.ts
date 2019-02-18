@@ -1,7 +1,8 @@
-import express, { Request, Express } from "express";
+import express, { Express } from "express";
 import knex from "knex";
 import environment from "../environment";
 import { serviceReady } from "./middleware";
+import version from "./routes/version";
 
 export interface Dependencies {
   dbClient: knex;
@@ -10,23 +11,12 @@ export interface Dependencies {
 class Api {
   express: Express;
   connected: boolean;
-  private client: knex;
 
-  constructor({ dbClient }: Dependencies) {
+  constructor() {
     const app = express();
-    this.client = dbClient;
+
     app.use(serviceReady.bind(this));
-
-    app.get("/version", async (_, response) => {
-      const { name } = await this.client
-        .select("name")
-        .from("knex_migrations")
-        .orderBy("migration_time", "desc")
-        .first();
-      const [version] = name.split("_");
-
-      response.send(version);
-    });
+    app.get("/version", version);
 
     app.listen(environment.API_PORT, () =>
       console.log(`Experiment listening on port ${environment.API_PORT}`)
@@ -37,8 +27,8 @@ class Api {
   }
 }
 
-const setupApi = (dependencies: Dependencies) => {
-  const api = new Api(dependencies);
+const setupApi = () => {
+  const api = new Api();
 
   return api;
 };
