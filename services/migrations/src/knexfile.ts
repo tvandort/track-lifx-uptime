@@ -1,13 +1,14 @@
 import * as knex from "knex";
+import environment from "./environment";
 
 const config: knex.Config = {
   client: "pg",
   connection: {
-    database: process.env.DATABASE,
-    user: process.env.POSTGRES_USER,
-    password: process.env.POSTGRES_PASSWORD,
-    host: process.env.DB_ADDRESS,
-    port: process.env.DB_PORT
+    database: environment.DATABASE,
+    user: environment.ADMIN_USER,
+    password: environment.ADMIN_PASSWORD,
+    host: environment.DATABASE_ADDRESS,
+    port: environment.DATABASE_PORT
   } as knex.ConnectionConfig,
   migrations: {
     directory: "build/migrations"

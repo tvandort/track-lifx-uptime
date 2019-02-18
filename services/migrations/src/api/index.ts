@@ -1,42 +1,34 @@
-import express, { Request, Express } from "express";
+import express, { Express } from "express";
 import knex from "knex";
 import environment from "../environment";
+import { serviceReady } from "./middleware";
+import version from "./routes/version";
 
 export interface Dependencies {
   dbClient: knex;
 }
 
 class Api {
-  app: Express;
+  express: Express;
   connected: boolean;
 
-  constructor({ dbClient: client }: Dependencies) {
+  constructor() {
     const app = express();
-    app.use((request: Request, response, next) => {
-      if (this.connected) {
-        request.client = client;
-        next();
-      } else {
-        response.status(503).send("Service is starting");
-        response.end();
-      }
-    });
 
-    app.get("/version", (_, response) => {
-      response.send("Example");
-    });
+    app.use(serviceReady.bind(this));
+    app.get("/version", version);
 
     app.listen(environment.API_PORT, () =>
       console.log(`Experiment listening on port ${environment.API_PORT}`)
     );
 
     this.connected = false;
-    this.app = app;
+    this.express = app;
   }
 }
 
-const setupApi = (dependencies: Dependencies) => {
-  const api = new Api(dependencies);
+const setupApi = () => {
+  const api = new Api();
 
   return api;
 };
