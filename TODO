@@ -2,7 +2,7 @@
 ✔ Change database migration to typescript. @done(19-02-15 10:30)
 ✔ Rename database to migrations. @done(19-02-15 10:43)
 ✔ Set node_modules path to outside of mount point so you don't have to blow away your own node_modules @done(19-02-17 12:24)
-☐ Add tests to migrations
+✔ Add tests to migrations @done(19-02-18 18:05)
 ☐ Add schema
 ☐ Add normal user for accessing schema.
 ☐ Add app user for server.
