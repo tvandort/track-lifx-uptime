@@ -20,9 +20,9 @@
     "ts-jest": "^23.10.5"
   },
   "scripts": {
-    "migrate-up": "knex migrate:latest",
-    "migrate-down": "knex migrate:rollback",
-    "create-migration": "knex migrate:make",
+    "migrate-up": "knex migrate:latest --knexfile src/knexfile.ts",
+    "migrate-down": "knex migrate:rollback --knexfile src/knexfile.ts",
+    "create-migration": "knex migrate:make --knexfile src/knexfile.ts",
     "start": "./scripts/start.sh",
     "start:dev": "nodemon -L",
     "test": "jest --watch"
