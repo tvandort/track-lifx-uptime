@@ -1,12 +1,12 @@
 import knex from "knex";
-import knexfile from "./knexfile";
+import config from "./config";
 import { ensureRequiredEnvironment } from "./environment";
 import databaseResponse from "./database-availability";
 import { setupApi } from "./api";
 
 ensureRequiredEnvironment();
 
-const dbClient = knex(knexfile);
+const dbClient = knex(config);
 const api = setupApi();
 
 (async () => {

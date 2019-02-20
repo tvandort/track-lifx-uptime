@@ -1,6 +1,6 @@
 import waitOn from "wait-on";
 import knex from "knex";
-import config from "./knexfile";
+import config from "./config";
 import express, { Express, Request } from "express";
 
 const app: Express = express();
