@@ -3,6 +3,11 @@
 ✔ Rename database to migrations. @done(19-02-15 10:43)
 ✔ Set node_modules path to outside of mount point so you don't have to blow away your own node_modules @done(19-02-17 12:24)
 ✔ Add tests to migrations @done(19-02-18 18:05)
+☐ Rip out knex
+☐ Write own migration tool using sql files.
+  ☐ migrate up command
+  ☐ migrate down command
+  ☐ migrate to command
 ☐ Add schema
 ☐ Add normal user for accessing schema.
 ☐ Add app user for server.
