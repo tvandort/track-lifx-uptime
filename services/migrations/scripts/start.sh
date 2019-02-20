@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 
-yarn tsc
-node $1 build/index.js
+# yarn tsc
+node $1 -r ts-node/register src/index.ts
