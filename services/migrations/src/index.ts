@@ -1,12 +1,12 @@
-import knex from "knex";
-import knexfile from "./knexfile";
+// import knex from "knex";
+// import knexfile from "./knexfile";
 import { ensureRequiredEnvironment } from "./environment";
 import databaseResponse from "./database-availability";
 import { setupApi } from "./api";
 
 ensureRequiredEnvironment();
 
-const dbClient = knex(knexfile);
+// const dbClient = knex(knexfile);
 const api = setupApi();
 
 (async () => {
@@ -15,7 +15,7 @@ const api = setupApi();
     process.exit(1);
   });
   try {
-    await dbClient.migrate.latest();
+    // await dbClient.migrate.latest();
   } catch (error) {
     console.log("Error in migration: ", error);
   }

@@ -2,7 +2,7 @@ import express, { Express } from "express";
 import knex from "knex";
 import environment from "../environment";
 import { serviceReady } from "./middleware";
-import version from "./routes/version";
+// import version from "./routes/version";
 
 export interface Dependencies {
   dbClient: knex;
@@ -16,7 +16,7 @@ class Api {
     const app = express();
 
     app.use(serviceReady.bind(this));
-    app.get("/version", version);
+    // app.get("/version", version);
 
     app.listen(environment.API_PORT, () =>
       console.log(`Experiment listening on port ${environment.API_PORT}`)
