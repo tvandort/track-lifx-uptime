@@ -17,12 +17,11 @@
     "@types/wait-on": "^3.2.0",
     "jest": "^23.1.0",
     "nodemon": "^1.18.10",
-    "ts-jest": "^23.10.5"
+    "ts-jest": "^23.10.5",
+    "ts-node": "^8.0.2"
   },
   "scripts": {
-    "migrate-up": "knex migrate:latest",
-    "migrate-down": "knex migrate:rollback",
-    "create-migration": "knex migrate:make",
+    "create-migration": "ts-node ./src/commands/make-migration.ts",
     "start": "./scripts/start.sh",
     "start:dev": "nodemon -L",
     "test": "jest --watch"
