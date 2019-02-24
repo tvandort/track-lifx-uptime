@@ -5,6 +5,7 @@
 ✔ Add tests to migrations @done(19-02-18 18:05)
 ☐ Rip out knex
 ☐ Write own migration tool using sql files.
+  ✔ write migration creator @done(19-02-24 17:58)
   ☐ migrate up command
   ☐ migrate down command
   ☐ migrate to command
