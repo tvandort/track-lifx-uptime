@@ -21,7 +21,7 @@
     "ts-node": "^8.0.2"
   },
   "scripts": {
-    "create-migration": "ts-node ./src/commands/make-migration.ts",
+    "migration:create": "ts-node ./src/commands/migration-create.ts",
     "start": "./scripts/start.sh",
     "start:dev": "nodemon -L",
     "test": "jest --watch"
