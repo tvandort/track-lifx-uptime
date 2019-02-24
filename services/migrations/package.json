@@ -22,6 +22,7 @@
   },
   "scripts": {
     "migration:create": "ts-node ./src/commands/migration-create.ts",
+    "migrate:up": "",
     "start": "./scripts/start.sh",
     "start:dev": "nodemon -L",
     "test": "jest --watch"

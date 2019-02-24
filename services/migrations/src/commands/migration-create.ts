@@ -1,5 +1,4 @@
-import fs, { write } from "fs";
-import path from "path";
+import fs from "fs"
 
 const reportFileCreationError = (error: Error) => {
   if (error) {
@@ -48,6 +47,6 @@ const [, , name] = process.argv;
 if (name) {
   createMigrations(name);
 } else {
-  console.log("not name");
+  console.log("Please provide a name for this migration.");
   process.exit(1);
 }
