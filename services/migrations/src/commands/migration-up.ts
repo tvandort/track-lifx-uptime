@@ -24,7 +24,6 @@ const doesMigrationTableExist = async (client: Client) => {
 
 (async () => {
   const client = new Client();
-
   try {
     await client.connect();
   } catch (error) {
@@ -32,12 +31,34 @@ const doesMigrationTableExist = async (client: Client) => {
     return;
   }
 
-  const migrationTableExists = await doesMigrationTableExist(client);
-  if (migrationTableExists) {
-    console.log("Migration table exists.");
-  } else {
-    console.log("Creating migration table.");
+  try {
+    const migrationTableExists = await doesMigrationTableExist(client);
+    if (migrationTableExists) {
+      console.log("Migration table exists.");
+      const result = await client.query(
+        `
+          SELECT name
+          FROM migrations
+        `
+      );
+      console.log(result);
+    } else {
+      console.log("Creating migration table.");
+      await client.query(
+        `
+          CREATE TABLE migrations (
+            id SERIAL PRIMARY KEY,
+            name VARCHAR,
+            began_on TIMESTAMPTZ NOT NULL DEFAULT now(),
+            ended_on TIMESTAMPTZ
+          )
+        `
+      );
+      console.log("Migration table created.");
+    }
+  } catch (error) {
+    console.log("Error bootstrapping migrations: ", error.message);
+  } finally {
+    await client.end();
   }
-
-  await client.end();
 })();
