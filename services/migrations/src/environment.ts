@@ -1,11 +1,11 @@
 const envVars = [
   {
-    key: "ADMIN_USER",
+    key: "POSTGRES_ADMIN_USER",
     value: "A_USER",
     warn: "Postgres connection requires admin account."
   },
   {
-    key: "ADMIN_PASSWORD",
+    key: "POSTGRES_ADMIN_PASSWORD",
     value: "A_PASSWORD",
     warn: "Postgres connection requires admin password."
   },
@@ -32,12 +32,12 @@ const envVars = [
 ];
 
 export default class Environment {
-  static get ADMIN_USER(): string {
-    return process.env["ADMIN_USER"]!;
+  static get POSTGRES_ADMIN_USER(): string {
+    return process.env["POSTGRES_ADMIN_USER"]!;
   }
 
-  static get ADMIN_PASSWORD(): string {
-    return process.env["ADMIN_PASSWORD"]!;
+  static get POSTGRES_ADMIN_PASSWORD(): string {
+    return process.env["POSTGRES_ADMIN_PASSWORD"]!;
   }
 
   static get DATABASE(): string {
@@ -48,12 +48,12 @@ export default class Environment {
     return process.env["DATABASE_ADDRESS"]!;
   }
 
-  static get DATABASE_PORT(): string {
-    return process.env["DATABASE_PORT"]!;
+  static get DATABASE_PORT(): number {
+    return parseInt(process.env["DATABASE_PORT"]!, 10);
   }
 
-  static get API_PORT(): string {
-    return process.env["API_PORT"]!;
+  static get API_PORT(): number {
+    return parseInt(process.env["API_PORT"]!, 10);
   }
 }
 

@@ -1,12 +1,12 @@
 import Environment, { ensureRequiredEnvironment } from "./environment";
 
 const envVars = [
-  ["ADMIN_USER", "A_USER"],
-  ["ADMIN_PASSWORD", "A_PASSWORD"],
+  ["POSTGRES_ADMIN_USER", "A_USER"],
+  ["POSTGRES_ADMIN_PASSWORD", "A_PASSWORD"],
   ["DATABASE", "A_DATABASE"],
   ["DATABASE_ADDRESS", "A_SERVER_ADDRESS"],
-  ["DATABASE_PORT", "A_DATABASE_PORT"],
-  ["API_PORT", "AN_API_PORT"]
+  ["DATABASE_PORT", "456"],
+  ["API_PORT", "123"]
 ];
 
 describe("environment", () => {
@@ -15,12 +15,12 @@ describe("environment", () => {
       setupEnvironmentVariables();
     });
 
-    it("has ADMIN_USER", () => {
-      expect(Environment.ADMIN_USER).toBe("A_USER");
+    it("has POSTGRES_ADMIN_USER", () => {
+      expect(Environment.POSTGRES_ADMIN_USER).toBe("A_USER");
     });
 
-    it("has ADMIN_PASSWORD", () => {
-      expect(Environment.ADMIN_PASSWORD).toBe("A_PASSWORD");
+    it("has POSTGRES_ADMIN_PASSWORD", () => {
+      expect(Environment.POSTGRES_ADMIN_PASSWORD).toBe("A_PASSWORD");
     });
 
     it("has DATABASE", () => {
@@ -32,11 +32,11 @@ describe("environment", () => {
     });
 
     it("has DATABASE_PORT", () => {
-      expect(Environment.DATABASE_PORT).toBe("A_DATABASE_PORT");
+      expect(Environment.DATABASE_PORT).toBe(456);
     });
 
     it("has API_PORT", () => {
-      expect(Environment.API_PORT).toBe("AN_API_PORT");
+      expect(Environment.API_PORT).toBe(123);
     });
 
     it("not to throw when environment is OK", () => {
